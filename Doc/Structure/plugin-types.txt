@@ -1,9 +1,69 @@
 Plugin-Typen
 ------------
 
-- Downloader (der eigentliche Downloader)
+- Download-Plugin (der eigentliche Downloader)
 - Download Vorverarbeitung (bearbeitet Links solange vor, bis sie heruntergeladen werden können)
 - Kinder Plugins (erweitern nur die Funktionalität von anderen Plugins, machen nichts am Core)
 - Content Provider (liefert Inhalte für die Hauptseite und kann Links in den Download schicken)
 - Themes (beeinflusst das Aussehen)
 - Sprache (Schlüsselbasierend für Core oder andere Plugins)
+
+Allgemeines (für alle gültig)
+===========
+- Jedes Plugin hat seinen eigenen Ordner für Daten und Code
+- Plugin werden vom Core installiert und verwaltet
+- Jedes Plugin kann Kindplugins besitzen, muss diese aber nicht nutzen
+- Plugins können deaktiviert werden, dann werden sie beim Start nicht mehr mitgeladen, ihre Daten werden aber beibehalten (wird ausgegraut dargestellt).
+- Plugins können deinstalliert werden, dann werden sie zum löschen deaktiviert (nicht mehr aktivierbar!) und es wird gewartet, bis alle Komponenten neugestartet sind,
+  die darauf zugreifen. Erst dann werden sie mitsamt ihrer Daten gelöscht.
+  Sobald das Plugin zum löschen deaktiviert wurde, ist sie auch nicht mehr in der Plugin-Liste auswählbar.
+- Plugins, die installiert werden, werden sofort aktiviert und gestartet.
+- Plugins können eigene Einstellungsseiten bereitstellen (Layout wird vom Core definiert, Inhalt kommt vom Plugin).
+
+Spache
+======
+- Einfache INI-Datei mit Schlüssel und Werten
+- Schlüssel ist meist so aufgebaut:
+	Hauptgruppe.Untergruppe.Name
+  Das ist aber keine feste Richtlinie, die Namen sind frei wählbar
+- Sprachdateien sind fest an das System (Core, Plugin) gebunden und können nur dafür Texte liefern
+
+Themes
+======
+- Spezielle CSS für diverse Seiten
+- definieren die Farbe, Größe, Schriftart, etc. von Bedienelementen auf der Oberfläche
+- responsiv angestrebt
+
+Kinder Plugins
+==============
+- werden beim Elternplugin aufgelistet
+- bietet Funktionalitäten NUR für das Elternplugin. Der Core und die Downloadkomponente greifen nicht darauf zu
+
+Download-Plugin
+===============
+- Lädt eine einzelne Dateien herunter
+- Kann spezifisch für einzelne Hoster
+- Für den default kann aber nur einer eingestellt werden
+- Download fortsetzen, protokollieren
+- Erkennung ob Downloads vollständig sind
+- Erkennung über Core-Datenbank ob Downloads schon mal erfolgt sind
+
+Download Vorverarbeitung
+========================
+- Versucht aus einen Link den direkten Downloadlink zu ermitteln
+- Gibt ggf. auch Cookie-Informationen weiter
+- Das Ergebnis der Vorverarbeitung kann wieder in eine andere Vorverarbeitung gehen
+- Kann auch Captchaanfragen auslösen
+  -> dafür sind folgende Daten nötig:
+     - Start-URL (die wird im Browser angezeigt)
+	 - Liste an Filtermasken für die URLs, bei der die Captcha-Abfrage als erfolgreich angesehen werden kann.
+
+Content Provider
+================
+- stellt ein eigenständiges "System" im Hintergrund bereit
+- bietet eigene Seiten an, auf der Daten bereitgestellt werden können
+- kann Downloadaufträge auslösen. Dazu werden vom Plugin selbst zusätzliche Informationen zum Download hinterlegt.
+- Hintergrunddaten können aktualisiert werden. Ausgelöst wird diese Aktualisierung aber vom Core (zeitlich). 
+  Empfehlungen können aber zum Core geleitet werden (Anfrage ob es Daten aktualisieren darf, zeitliche Intervalle).
+- Kann eigene spezielle Themes besitzen. Denoch sollte es die Core Themes beachten
+- Kann auf die Downloadliste und -historie zugreifen und diese dadurch auch abspielen (Zugriff auch bei partiellen Download möglich).
