@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxLib.Js", "..\External\Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxLib.Sqlite", "..\External\MaxLib\MaxLib.Sqlite\MaxLib.Sqlite.csproj", "{38B41E90-CAF4-4E9B-9065-56282F23664F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{7D70EF5E-A919-4483-BE4A-5A3059253585}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
