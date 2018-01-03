@@ -1,0 +1,9 @@
+Plugin-Typen
+------------
+
+- Downloader (der eigentliche Downloader)
+- Download Vorverarbeitung (bearbeitet Links solange vor, bis sie heruntergeladen werden können)
+- Kinder Plugins (erweitern nur die Funktionalität von anderen Plugins, machen nichts am Core)
+- Content Provider (liefert Inhalte für die Hauptseite und kann Links in den Download schicken)
+- Themes (beeinflusst das Aussehen)
+- Sprache (Schlüsselbasierend für Core oder andere Plugins)
